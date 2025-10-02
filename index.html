@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMSER25 Certificate Download</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Merriweather", serif;
+      background: #131313;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #1c1c1c;
+      padding: 40px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+      border: 1px solid #2c2c2c;
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 18px;
+      line-height: 1.5em;
+      margin-bottom: 12px;
+      color: #C0C0C0; /* Silver tone */
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin-bottom: 25px;
+      font-weight: normal;
+      color: #9aa0a6;
+      border-bottom: 1px solid #2e2e2e;
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 14px;
+      text-align: left;
+      color: #d0d0d0;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #3a3a3a;
+      margin-bottom: 18px;
+      font-size: 14px;
+      background: #262626;
+      color: #f5f5f5;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3A86FF; /* Royal Blue */
+      box-shadow: 0 0 6px #3A86FF;
+    }
+
+    button {
+      background: linear-gradient(135deg, #3A86FF, #4361EE);
+      color: #fff;
+      padding: 12px 25px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #4361EE, #3A86FF);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    #result a {
+      display: inline-block;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #3A86FF, #4361EE);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    #result a:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Replace src with your actual logo file -->
+    <img src="logo.png" alt="Conference Logo" class="logo">
+
+    <h1>The Third National Conference on Material Sciences and Renewable Energy (CMRSE 2025)</h1>
+    <h2>CMSER25 Certificate Download</h2>
+
+    <form id="certForm">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" required>
+
+      <label for="code">Enter your code:</label>
+      <input type="text" id="code" required>
+
+      <button type="submit">Get Certificate</button>
+    </form>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById("certForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const code = document.getElementById("code").value.trim();
+
+      fetch("codes.json")
+        .then(response => response.json())
+        .then(codes => {
+          if (codes[code]) {
+            const pdfFile = codes[code];
+            document.getElementById("result").innerHTML = 
+              `<a href="pdfs/${pdfFile}" download>⬇️ Download your certificate</a>`;
+          } else {
+            document.getElementById("result").textContent = "❌ Invalid code. Please try again.";
+          }
+        })
+        .catch(error => {
+          document.getElementById("result").textContent = "⚠️ Error loading codes.";
+          console.error(error);
+        });
+    });
+  </script>
+</body>
+</html>
