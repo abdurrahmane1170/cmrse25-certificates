@@ -147,7 +147,7 @@
           if (codes[code]) {
             const pdfFile = codes[code];
             document.getElementById("result").innerHTML = 
-              `<a href="pdfs/${pdfFile}" download>⬇️ Download your certificate</a>`;
+              `<a href="${pdfFile}" download>⬇️ Download your certificate</a>`;
           } else {
             document.getElementById("result").textContent = "❌ Invalid code. Please try again.";
           }
@@ -160,3 +160,4 @@
   </script>
 </body>
 </html>
+
