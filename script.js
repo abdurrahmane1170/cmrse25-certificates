@@ -9,7 +9,7 @@ document.getElementById("certForm").addEventListener("submit", function(e) {
       if (codes[code]) {
         const pdfFile = codes[code];
         document.getElementById("result").innerHTML = 
-          `<a href="pdfs/${pdfFile}" download>Download your certificate</a>`;
+          `<a href="${pdfFile}" download>Download your certificate</a>`;
       } else {
         document.getElementById("result").textContent = "❌ Invalid code. Please try again.";
       }
@@ -19,3 +19,4 @@ document.getElementById("certForm").addEventListener("submit", function(e) {
       console.error(error);
     });
 });
+
